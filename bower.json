@@ -1,0 +1,23 @@
+{
+  "name": "frontend",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Josh Doncaster-Marsiglio <jmarsiglio@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "socket.io": "~1.4.5",
+    "angular": "~1.4.9",
+    "bootstrap": "~3.3.6"
+  }
+}

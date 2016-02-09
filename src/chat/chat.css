@@ -1,0 +1,8 @@
+.chat {
+  list-style: none;
+  padding: 5px;
+}
+
+.message-timestamp {
+  color: grey;
+}

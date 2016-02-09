@@ -1,0 +1,19 @@
+Connection status: {{connected}}
+<br>
+Channel: {{socketChannel}}
+<ul class="chat">
+  <li ng-repeat="message in messages">
+    <span class="message-author">{{message.author}}: </span>
+    <span class="message-content">{{message.content}}</span>
+    <span class="message-timestamp">{{formatTimestamp(message.timestamp)}}</span>
+  </li>
+</ul>
+<div class="chat-input">
+  <input ng-keypress="handleSubmit($event)" ng-model="inputMessage" type="text" placeholder="Type message"></input>
+  <button class="btn btn-primary" ng-click="handleSubmit($event)" type="submit" value="submit">Submit</button>
+</div>
+
+<br><br>
+Channel:
+<input ng-model="channelInput" placeholder="{{socketChannel}}" type="text"></input>
+<button class="btn" ng-click="changeRoom()">Change</button>
