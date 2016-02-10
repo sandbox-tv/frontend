@@ -5,9 +5,6 @@ app.controller('ChatController', [
   'ChatMessage',
   'ChatMessageParser',
   'moment', function($scope, socket, socketEvents, ChatMessage, ChatMessageParser, moment) {
-    $scope.test = function() {
-      console.log('c test');
-    };
     $scope.messages = [];
     $scope.inputMessage = "";
     $scope.connected = socket.connected();
