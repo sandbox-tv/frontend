@@ -1,6 +1,6 @@
-app.factory('socket', function ($rootScope) {
+app.factory('socket', ['$rootScope', 'tokenService', function ($rootScope, tokenService) {
   // TODO: retrieve bearer token from cookie (this bearer was manually retrieved from /login endpoint)
-  var socket = io.connect(Config.SOCKET_URL + '?bearer=2ebde3def1d913724fbd9f4b01a802fb75563f56');
+  var socket = io.connect(Config.SOCKET_URL + '?bearer=' + tokenService.getToken());
   return {
     connected: function() {
       return socket.connected ? 'connected' : 'not connected';
@@ -24,4 +24,4 @@ app.factory('socket', function ($rootScope) {
       })
     }
   };
-});
+}]);

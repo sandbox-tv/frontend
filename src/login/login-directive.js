@@ -4,7 +4,8 @@ app.directive('login', function() {
     transclude: false,
     templateUrl: 'login/login.html',
     scope: {
-      name: '&'
+      onSuccess: '&',
+      onFail: '&'
     },
     controller: 'LoginController'
   };
