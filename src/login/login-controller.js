@@ -3,8 +3,7 @@ app.controller('LoginController', [
   'moment',
   'loginService',
   '$state',
-  '$cookies',
-  'tokenService', function($scope, moment, loginService, $state, $cookies, tokenService) {
+  'tokenService', function($scope, moment, loginService, $state, tokenService) {
     var clearPassword = function() {
       $scope.inputPassword = '';
     };
