@@ -1,5 +1,4 @@
 app.factory('socket', ['$rootScope', 'tokenService', function ($rootScope, tokenService) {
-  // TODO: retrieve bearer token from cookie (this bearer was manually retrieved from /login endpoint)
   var socket = io.connect(Config.SOCKET_URL + '?bearer=' + tokenService.getToken());
   return {
     connected: function() {
