@@ -18,16 +18,14 @@ app.controller('LoginController', [
       };
 
       var handleLoginFail = function(error) {
-        $scope.error = error.error_description;
+        $scope.error = error.error
         clearPassword();
       };
 
       loginService(username, password).then(function(data) {
-        if (data.error) {
-          handleLoginFail(data);
-        } else {
-          handleLoginSuccess(data);
-        }
+        handleLoginSuccess(data);
+      }).catch(function(data) {
+        handleLoginFail(data);
       });
     };
 }]);

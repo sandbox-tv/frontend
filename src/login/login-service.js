@@ -11,13 +11,15 @@ app.service('loginService', ['$http', '$window', '$log', function ($http, $windo
       data: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      withCredentials: true
     }).then(function(response) {
+      if (response.status != 200) return Promise.reject();
       $log.info('login success', response);
       return response.data;
     }).catch(function(response) {
       $log.info('login error', response);
-      return response.data;
+      return Promise.reject(response.data);
     });
   };
 }]);
