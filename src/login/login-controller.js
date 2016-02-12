@@ -2,8 +2,7 @@ app.controller('LoginController', [
   '$scope',
   'moment',
   'loginService',
-  '$state',
-  'tokenService', function($scope, moment, loginService, $state, tokenService) {
+  '$state', function($scope, moment, loginService, $state) {
     var clearPassword = function() {
       $scope.inputPassword = '';
     };
@@ -14,7 +13,6 @@ app.controller('LoginController', [
 
       var handleLoginSuccess = function(data) {
         $state.transitionTo('chat');
-        tokenService.setTokenResponse(data);
       };
 
       var handleLoginFail = function(error) {
