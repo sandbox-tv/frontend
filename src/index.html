@@ -9,9 +9,12 @@
   <link rel="stylesheet" href="./register/register.css">
 </head>
 <body>
+  <header></header>
   <div class="container">
     <div ui-view></div>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
   <script src="../node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -31,6 +34,7 @@
   <script src="./token-service.js"></script>
   <script src="./register/register-controller.js"></script>
   <script src="./register/register-directive.js"></script>
-  <script src="./register/register-service.js"></script>
+  <script src="./header/header-controller.js"></script>
+  <script src="./header/header-directive.js"></script>
 </body>
 </html>

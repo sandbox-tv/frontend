@@ -1,5 +1,5 @@
 app.factory('socket', ['$rootScope', 'tokenService', function ($rootScope, tokenService) {
-  var socket = io.connect(Config.SOCKET_URL + '?bearer=' + tokenService.getToken());
+  var socket = io.connect(Config.SOCKET_URL + '?sessiontoken=' + tokenService.getToken());
   return {
     connected: function() {
       return socket.connected ? 'connected' : 'not connected';

@@ -1,7 +1,8 @@
 app.controller('RegisterController', [
   '$scope',
   '$state',
-  'registerService', function($scope, $state, registerService) {
+  'loginService',
+  'tokenService', function($scope, $state, loginService, tokenService) {
     var clearPassword = function() {
       $scope.inputPassword = '';
       $scope.inputPasswordConfirm = '';
@@ -12,12 +13,18 @@ app.controller('RegisterController', [
       var password = $scope.inputPassword;
       var passwordConfirm = $scope.inputPasswordConfirm;
 
+      var reset = function() {
+        $scope.error = '';
+        $scope.passwordConfirmError = false;
+      };
+
       var handleRegisterSuccess = function(data) {
+        tokenService.setUserData(data);
         $state.transitionTo('chat');
       };
 
       var handleRegisterFail = function(error) {
-        $scope.error = error.error
+        $scope.error = error.errors[0].message;
         clearPassword();
       };
 
@@ -25,15 +32,17 @@ app.controller('RegisterController', [
         return password === passwordConfirm;
       };
 
+      reset();
+
       if (!passwordMatch()) {
         $scope.error = 'Passwords do no not match';
         $scope.passwordConfirmError = true;
         return;
       }
 
-      registerService(username, password).then(function(data) {
+      loginService.register(username, password).then(function(data) {
         handleRegisterSuccess(data);
-      }).catch(function(data) {
+      }, function(data) {
         handleRegisterFail(data);
       });
     };

@@ -2,7 +2,9 @@ app.controller('LoginController', [
   '$scope',
   'moment',
   'loginService',
-  '$state', function($scope, moment, loginService, $state) {
+  'tokenService',
+  '$state',
+  '$rootScope', function($scope, moment, loginService, tokenService, $state, $rootScope) {
     var clearPassword = function() {
       $scope.inputPassword = '';
     };
@@ -12,17 +14,21 @@ app.controller('LoginController', [
       var password = $scope.inputPassword;
 
       var handleLoginSuccess = function(data) {
+        tokenService.setUserData(data);
+        console.log('token', tokenService.getToken());
+        $rootScope.$broadcast('login');
         $state.transitionTo('chat');
       };
 
-      var handleLoginFail = function(error) {
-        $scope.error = error.error
+      var handleLoginFail = function(data) {
+        $scope.error = data.error || data.errors[0].message;
+        $log.info('scope error ', $scope.error);
         clearPassword();
       };
 
-      loginService(username, password).then(function(data) {
+      loginService.login(username, password).then(function(data) {
         handleLoginSuccess(data);
-      }).catch(function(data) {
+      }, function(data) {
         handleLoginFail(data);
       });
     };

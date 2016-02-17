@@ -2,7 +2,10 @@
   <form class="form-signin" ng-submit="submit()">
     <input type="text" class="form-control" placeholder="Username" ng-model="inputUsername" required autofocus>
     <input type="password" class="form-control" placeholder="Password" ng-model="inputPassword" required>
-    <input type="password" class="form-control" ng-class="{'has-error': passwordConfirmError}" placeholder="Confirm Password" ng-model="inputPasswordConfirm" required>
+    <div ng-class="{'has-error': passwordConfirmError}" class="form-group has-feedback">
+      <input type="password" class="form-control"  placeholder="Confirm Password" ng-model="inputPasswordConfirm" required>
+      <span ng-if="passwordConfirmError" class="glyphicon glyphicon-remove form-control-feedback"></span>
+    </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 
     <p ng-show="error">{{error}}</p>
