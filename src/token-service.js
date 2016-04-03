@@ -16,8 +16,8 @@ app.service('tokenService', ['$cookies', '$log', function($cookies, $log) {
 
     setUserData: function(data) {
       $log.log(data);
-      $cookies.put('sessionToken', data.sessiontoken);
-      $cookies.put('userData', JSON.stringify(data.user));
+      $cookies.put('sessionToken', data.session.uuid);
+      $cookies.put('userData', JSON.stringify(data.session.user));
     },
 
     getUsername: function() {

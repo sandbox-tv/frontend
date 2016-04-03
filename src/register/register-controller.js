@@ -23,8 +23,8 @@ app.controller('RegisterController', [
         $state.transitionTo('chat');
       };
 
-      var handleRegisterFail = function(error) {
-        $scope.error = error.errors[0].message;
+      var handleRegisterFail = function(data) {
+        $scope.error = data.error || data.errors[0].message;
         clearPassword();
       };
 

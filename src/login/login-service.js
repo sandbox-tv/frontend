@@ -2,7 +2,7 @@ app.service('loginService', ['$http', '$window', '$log', '$cookies', 'tokenServi
   function baseRequest(options) {
     return $http(options)
       .then(function(response) {
-        if (response.status != 200) return Promise.reject();
+        if (response.status != 200) return Promise.reject(response);
         $log.log(response);
         return response.data;
       })
@@ -17,8 +17,8 @@ app.service('loginService', ['$http', '$window', '$log', '$cookies', 'tokenServi
       return baseRequest({
         method: 'POST',
         url: $window.Config.LOGOUT_URL,
-        headers: {
-          Authorization: 'Bearer ' + tokenService.getToken()
+        data: {
+          sessiontoken: tokenService.getToken()
         }
       }).then(function() {
         tokenService.remove();

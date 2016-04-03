@@ -1,22 +1,6 @@
 var app = angular.module('sandbox.tv', ['angularMoment', 'ui.router', 'ngCookies']);
 
-app.factory('authorizationInterceptor', function($cookies, $log) {
-  var token = $cookies.get('sessionToken');
-  $log.info('interceptor token', token);
-
-  return {
-    request: function(config) {
-      if (token) {
-        config.headers.Authorization = 'Bearer ' + token;
-      }
-
-      return config;
-    }
-  };
-});
-
 app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
-  $httpProvider.interceptors.push('authorizationInterceptor');
   $urlRouterProvider.otherwise('/register');
 
   $stateProvider

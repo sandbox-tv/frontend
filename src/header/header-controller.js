@@ -19,8 +19,7 @@ app.controller('HeaderController', [
       $log.info('logging out');
       $log.info('logout token', tokenService.getToken());
       loginService.logout().then(function() {
-        $scope.username = tokenService.getUsername();
-        $scope.isLoggedIn = !!$scope.username;
+        getDetails();
         $state.transitionTo('login');
       });
     }
