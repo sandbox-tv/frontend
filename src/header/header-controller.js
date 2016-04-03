@@ -1,26 +1,31 @@
-app.controller('HeaderController', [
-  '$scope',
-  'tokenService',
-  'loginService',
-  '$state', '$log',
-  '$rootScope', function($scope, tokenService, loginService, $state, $log, $rootScope) {
-    function getDetails() {
-      $scope.username = tokenService.getUsername();
-      $scope.isLoggedIn = !!$scope.username;
-    }
+define([
+  'app',
+  'token-service'
+], function(app) {
+  app.controller('HeaderController', [
+    '$scope',
+    'tokenService',
+    'loginService',
+    '$state', '$log',
+    '$rootScope', function($scope, tokenService, loginService, $state, $log, $rootScope) {
+      function getDetails() {
+        $scope.username = tokenService.getUsername();
+        $scope.isLoggedIn = !!$scope.username;
+      }
 
-    $rootScope.$on('login', function() {
-      getDetails();
-    });
-
-    getDetails();
-
-    $scope.logout = function() {
-      $log.info('logging out');
-      $log.info('logout token', tokenService.getToken());
-      loginService.logout().then(function() {
+      $rootScope.$on('login', function() {
         getDetails();
-        $state.transitionTo('login');
       });
-    }
-}]);
+
+      getDetails();
+
+      $scope.logout = function() {
+        $log.info('logging out');
+        $log.info('logout token', tokenService.getToken());
+        loginService.logout().then(function() {
+          getDetails();
+          $state.transitionTo('login');
+        });
+      }
+  }]);
+});

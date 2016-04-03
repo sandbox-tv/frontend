@@ -12,4 +12,4 @@ RUN mkdir /app
 COPY . /app
 RUN cd /app; npm install
 
-CMD http-server /app
+CMD http-server /app/build
