@@ -1,0 +1,4 @@
+trigger:
+  type: deploy
+  script:
+    - "curl -X POST -F token=31c7668ea7ef14578b160921900279 -F ref=HEAD http://extramuros.ryandv.me:9000/api/v3/projects/9/trigger/builds"
