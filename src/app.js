@@ -1,29 +1,26 @@
-define([
-  'angular',
-  'angularCookies',
-  'angularUiRouter',
-  'moment',
-], function(angular, angularCookies, angularUiRouter, moment) {
+var app = angular.module('sandbox.tv', ['angularMoment', 'ui.router', 'ngCookies']);
 
-  var app = angular.module('sandbox.tv', ['ui.router', 'ngCookies']);
+app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+  $urlRouterProvider.otherwise('/register');
 
-  app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
-    $urlRouterProvider.otherwise('/register');
-
-    $stateProvider
-      .state('login', {
-        url: '/login',
-        template: '<login></login>'
-      })
-      .state('chat', {
-        url: '/chat',
-        template: '<chat></chat>'
-      })
-      .state('register', {
-        url: '/register',
-        template: '<register><register>'
-      });
-  });
-
-  return app;
+  $stateProvider
+    .state('login', {
+      url: '/login',
+      template: '<login></login>'
+    })
+    .state('chat', {
+      url: '/chat',
+      template: '<chat></chat>'
+    })
+    .state('register', {
+      url: '/register',
+      template: '<register><register>'
+    });
 });
+
+window.Config = {
+  SOCKET_URL: 'http://localhost:3001',
+  LOGIN_URL: 'http://localhost:4567/login',
+  REGISTER_URL: 'http://localhost:4567/register',
+  LOGOUT_URL: 'http://localhost:4567/logout'
+};

@@ -1,36 +1,32 @@
-define([
-  'app'
-], function(app) {
-  app.service('tokenService', ['$cookies', '$log', function($cookies, $log) {
-    function getUserData() {
-      var data = $cookies.get('userData');
-      if (data) return JSON.parse(data);
+app.service('tokenService', ['$cookies', '$log', function($cookies, $log) {
+  function getUserData() {
+    var data = $cookies.get('userData');
+    if (data) return JSON.parse(data);
+  }
+
+  function getSessionToken() {
+    return $cookies.get('sessionToken');
+  }
+
+  return {
+    remove: function() {
+      $cookies.remove('userData');
+      $cookies.remove('sessionToken');
+    },
+
+    setUserData: function(data) {
+      $log.log(data);
+      $cookies.put('sessionToken', data.session.uuid);
+      $cookies.put('userData', JSON.stringify(data.session.user));
+    },
+
+    getUsername: function() {
+      var data = getUserData();
+      if (data) return data.username;
+    },
+
+    getToken: function() {
+      return getSessionToken();
     }
-
-    function getSessionToken() {
-      return $cookies.get('sessionToken');
-    }
-
-    return {
-      remove: function() {
-        $cookies.remove('userData');
-        $cookies.remove('sessionToken');
-      },
-
-      setUserData: function(data) {
-        $log.log(data);
-        $cookies.put('sessionToken', data.session.uuid);
-        $cookies.put('userData', JSON.stringify(data.session.user));
-      },
-
-      getUsername: function() {
-        var data = getUserData();
-        if (data) return data.username;
-      },
-
-      getToken: function() {
-        return getSessionToken();
-      }
-    };
-  }]);
-});
+  };
+}]);
