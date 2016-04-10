@@ -19,8 +19,8 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 });
 
 window.Config = {
-  SOCKET_URL: 'http://localhost:3001',
-  LOGIN_URL: 'http://localhost:4567/login',
-  REGISTER_URL: 'http://localhost:4567/register',
-  LOGOUT_URL: 'http://localhost:4567/logout'
+  SOCKET_URL: 'http:///* @echo EXTERNAL_IP */:3001',
+  LOGIN_URL: 'http:///* @echo EXTERNAL_IP */:3000/login',
+  REGISTER_URL: 'http:///* @echo EXTERNAL_IP */:3000/register',
+  LOGOUT_URL: 'http:///* @echo EXTERNAL_IP */:3000/logout'
 };
